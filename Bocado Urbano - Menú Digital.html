@@ -1,0 +1,904 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bocado Urbano | Menú Digital</title>
+  <!-- Tailwind CSS -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'sans-serif'],
+            display: ['Plus Jakarta Sans', 'sans-serif'],
+          },
+          colors: {
+            dark: {
+              bg: '#0f1115',
+              card: '#181b22',
+              elevated: '#21252f',
+              border: '#2c313d'
+            },
+            brand: {
+              orange: '#ff6b00',
+              amber: '#ff9e00',
+              glow: 'rgba(255, 107, 0, 0.18)'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Estilos personalizados complementarios */
+    body {
+      background-color: #0f1115;
+      color: #f3f4f6;
+      -webkit-tap-highlight-color: transparent;
+    }
+    /* Ocultar barra de desplazamiento en navegación horizontal */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Animación suave para el modal */
+    @keyframes slideUp {
+      from { transform: translateY(100%); opacity: 0; }
+      to { transform: translateY(0); opacity: 1; }
+    }
+    .animate-slide-up {
+      animation: slideUp 0.28s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+  </style>
+</head>
+<body class="antialiased pb-28 selection:bg-brand-orange selection:text-white">
+
+  <!-- ==================== 1. ENCABEZADO (HERO) ==================== -->
+  <header class="relative overflow-hidden border-b border-dark-border bg-gradient-to-b from-[#1a1612] via-dark-bg to-dark-bg pt-8 pb-7 px-4 sm:px-6">
+    <!-- Resplandor decorativo superior -->
+    <div class="pointer-events-none absolute -top-24 left-1/2 -translate-x-1/2 h-48 w-96 rounded-full bg-brand-orange/20 blur-3xl"></div>
+
+    <div class="relative max-w-4xl mx-auto">
+      <div class="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+        <div>
+          <!-- Badge de estado abierto -->
+          <div class="inline-flex items-center gap-2 rounded-full bg-emerald-500/10 border border-emerald-500/30 px-3 py-1 text-xs font-medium text-emerald-400 mb-3">
+            <span class="relative flex h-2 w-2">
+              <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+              <span class="relative inline-flex rounded-full h-2 w-2 bg-emerald-500"></span>
+            </span>
+            Abierto hoy · 6:00 PM – 11:30 PM
+          </div>
+
+          <h1 class="font-display text-3xl sm:text-4xl font-extrabold tracking-tight text-white">
+            Bocado <span class="bg-gradient-to-r from-brand-orange to-brand-amber bg-clip-text text-transparent">Urbano</span>
+          </h1>
+          <p class="mt-1.5 text-sm sm:text-base text-gray-400 max-w-lg">
+            Street food caliente y recién armado al pedir. Sabor brutal directo a tus manos.
+          </p>
+        </div>
+
+        <!-- Botón consulta rápida WhatsApp -->
+        <div class="flex-shrink-0">
+          <a href="https://wa.me/584161170303?text=%C2%A1Hola%20Bocado%20Urbano!%20Tengo%20una%20consulta%20sobre%20el%20men%C3%BA."
+             target="_blank"
+             rel="noopener noreferrer"
+             class="inline-flex items-center justify-center gap-2 w-full sm:w-auto rounded-xl bg-dark-card hover:bg-dark-elevated border border-dark-border px-4 py-3 text-sm font-semibold text-white transition active:scale-95">
+            <!-- Icono WhatsApp SVG -->
+            <svg class="w-5 h-5 text-emerald-400" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+            </svg>
+            <span>Chat rápido</span>
+          </a>
+        </div>
+      </div>
+
+      <!-- Badges informativos rápidos -->
+      <div class="mt-5 flex flex-wrap gap-2 text-xs font-medium text-gray-300">
+        <span class="inline-flex items-center gap-1.5 rounded-lg bg-dark-card border border-dark-border px-3 py-1.5">
+          🛵 Delivery en zona y Retiro
+        </span>
+        <span class="inline-flex items-center gap-1.5 rounded-lg bg-dark-card border border-dark-border px-3 py-1.5">
+          ⚡ Listo en 15–20 min
+        </span>
+        <span class="inline-flex items-center gap-1.5 rounded-lg bg-dark-card border border-dark-border px-3 py-1.5">
+          💳 Pago Móvil · Efectivo · Transf.
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- ==================== 2. NAVEGACIÓN STICKY POR CATEGORÍAS ==================== -->
+  <nav class="sticky top-0 z-30 bg-dark-bg/90 backdrop-blur-md border-b border-dark-border">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6">
+      <div id="categoryNav" class="flex items-center gap-2 overflow-x-auto no-scrollbar py-3">
+        <a href="#favoritos" data-cat="favoritos" class="cat-pill active shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-semibold transition bg-brand-orange text-white shadow-lg shadow-brand-orange/20">
+          🔥 Favoritos
+        </a>
+        <a href="#hamburguesas" data-cat="hamburguesas" class="cat-pill shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-semibold transition bg-dark-card text-gray-300 hover:bg-dark-elevated border border-dark-border">
+          🍔 Hamburguesas
+        </a>
+        <a href="#pepitos" data-cat="pepitos" class="cat-pill shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-semibold transition bg-dark-card text-gray-300 hover:bg-dark-elevated border border-dark-border">
+          🌭 Pepitos y Perros
+        </a>
+        <a href="#acompanantes" data-cat="acompanantes" class="cat-pill shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-semibold transition bg-dark-card text-gray-300 hover:bg-dark-elevated border border-dark-border">
+          🍟 Acompañantes
+        </a>
+        <a href="#combos" data-cat="combos" class="cat-pill shrink-0 rounded-full px-4 py-2 text-xs sm:text-sm font-semibold transition bg-dark-card text-gray-300 hover:bg-dark-elevated border border-dark-border">
+          📦 Combos
+        </a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ==================== 3. CONTENIDO PRINCIPAL DEL MENÚ ==================== -->
+  <main class="max-w-4xl mx-auto px-4 sm:px-6 pt-6 space-y-10">
+
+    <!-- SECCIÓN: LOS MÁS PEDIDOS (FAVORITOS) -->
+    <section id="favoritos" class="scroll-mt-20">
+      <div class="flex items-center justify-between mb-4">
+        <div>
+          <h2 class="font-display text-xl sm:text-2xl font-bold text-white flex items-center gap-2">
+            <span>🔥 Los más pedidos</span>
+          </h2>
+          <p class="text-xs sm:text-sm text-gray-400">Los favoritos de la casa, salen volando</p>
+        </div>
+      </div>
+      <div id="grid-favoritos" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <!-- SECCIÓN: HAMBURGUESAS -->
+    <section id="hamburguesas" class="scroll-mt-20">
+      <div class="mb-4">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-white">🍔 Hamburguesas</h2>
+        <p class="text-xs sm:text-sm text-gray-400">Pan artesanal suave y carne jugosa a la plancha</p>
+      </div>
+      <div id="grid-hamburguesas" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- SECCIÓN: PEPITOS Y PERROS CALIENTES -->
+    <section id="pepitos" class="scroll-mt-20">
+      <div class="mb-4">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-white">🌭 Pepitos y Perros Calientes</h2>
+        <p class="text-xs sm:text-sm text-gray-400">Bien resueltos, full queso y salsas al gusto</p>
+      </div>
+      <div id="grid-pepitos" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- SECCIÓN: ACOMPAÑANTES, EXTRAS Y BEBIDAS -->
+    <section id="acompanantes" class="scroll-mt-20">
+      <div class="mb-4">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-white">🍟 Acompañantes, Extras y Bebidas</h2>
+        <p class="text-xs sm:text-sm text-gray-400">Completa tu orden con papas crujientes o algo bien frío</p>
+      </div>
+      <div id="grid-acompanantes" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+    </section>
+
+    <!-- SECCIÓN: COMBOS -->
+    <section id="combos" class="scroll-mt-20">
+      <div class="mb-4">
+        <h2 class="font-display text-xl sm:text-2xl font-bold text-white">📦 Combos</h2>
+        <p class="text-xs sm:text-sm text-gray-400">Ahorra armando el combo completo</p>
+      </div>
+      <div id="grid-combos" class="grid grid-cols-1 sm:grid-cols-2 gap-4"></div>
+    </section>
+
+  </main>
+
+  <!-- ==================== 4. PIE DE PÁGINA ==================== -->
+  <footer class="max-w-4xl mx-auto px-4 sm:px-6 mt-14 pt-8 border-t border-dark-border text-sm text-gray-400">
+    <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+      <div>
+        <h3 class="font-display font-bold text-white text-base">Bocado Urbano</h3>
+        <p class="mt-1 text-xs text-gray-400 leading-relaxed">
+          Horario: Martes a Domingo · 6:00 PM – 11:30 PM.<br>
+          Pedidos directos por WhatsApp al <span class="text-gray-200 font-medium">+58 416-1170303</span>.
+        </p>
+      </div>
+      <div class="sm:text-right flex flex-col sm:items-end justify-between gap-3">
+        <div class="text-xs">
+          <span class="text-gray-300 font-medium">Métodos de pago:</span><br>
+          Efectivo ($ / Bs) · Pago Móvil · Transferencia
+        </div>
+        <button onclick="copiarCodigoFuente()"
+                id="btnCopyCode"
+                class="inline-flex items-center gap-2 rounded-xl bg-dark-card hover:bg-dark-elevated border border-dark-border px-3.5 py-2 text-xs font-medium text-gray-300 transition active:scale-95">
+          <svg class="w-4 h-4 text-brand-amber" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M8 16H6a2 2 0 01-2-2V6a2 2 0 012-2h8a2 2 0 012 2v2m-6 12h8a2 2 0 002-2v-8a2 2 0 00-2-2h-8a2 2 0 00-2 2v8a2 2 0 002 2z"/>
+          </svg>
+          <span id="copyBtnText">Copiar código HTML completo</span>
+        </button>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ==================== 5. BARRA INFERIOR FIJA ("TU PEDIDO") ==================== -->
+  <div id="bottomCartBar" class="fixed bottom-0 inset-x-0 z-40 p-3 sm:p-4 bg-gradient-to-t from-dark-bg via-dark-bg/95 to-transparent pointer-events-none">
+    <div class="max-w-4xl mx-auto pointer-events-auto">
+      <button onclick="abrirModalPedido()"
+              class="w-full flex items-center justify-between rounded-2xl bg-gradient-to-r from-brand-orange to-brand-amber p-3.5 sm:px-5 text-white shadow-2xl shadow-brand-orange/30 transition hover:brightness-105 active:scale-[0.99]">
+        <div class="flex items-center gap-3">
+          <span id="cartCountBadge" class="flex h-8 w-8 items-center justify-center rounded-xl bg-black/25 font-display font-extrabold text-sm">
+            0
+          </span>
+          <div class="text-left">
+            <div class="text-xs font-medium text-white/90">Tu pedido</div>
+            <div id="cartSummaryText" class="text-sm font-bold leading-tight">Agrega platos del menú</div>
+          </div>
+        </div>
+        <div class="flex items-center gap-2 bg-black/20 rounded-xl px-3.5 py-2">
+          <span id="cartTotalBottom" class="font-display font-extrabold text-base">$0.00</span>
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"/>
+          </svg>
+        </div>
+      </button>
+    </div>
+  </div>
+
+  <!-- ==================== 6. MODAL / CAJÓN DE RESUMEN DEL PEDIDO ==================== -->
+  <div id="orderModal" class="fixed inset-0 z-50 hidden">
+    <!-- Backdrop oscuro -->
+    <div onclick="cerrarModalPedido()" class="fixed inset-0 bg-black/75 backdrop-blur-sm transition-opacity"></div>
+
+    <!-- Contenedor del cajón -->
+    <div class="fixed inset-x-0 bottom-0 sm:inset-0 sm:flex sm:items-center sm:justify-center p-0 sm:p-4 pointer-events-none">
+      <div class="animate-slide-up pointer-events-auto w-full sm:max-w-lg max-h-[90vh] flex flex-col rounded-t-3xl sm:rounded-3xl bg-dark-card border border-dark-border shadow-2xl overflow-hidden">
+        
+        <!-- Cabecera del Modal -->
+        <div class="flex items-center justify-between px-5 py-4 border-b border-dark-border bg-dark-elevated/50">
+          <div>
+            <h3 class="font-display text-lg font-bold text-white">Resumen de tu pedido</h3>
+            <p class="text-xs text-gray-400">Revisa tus platos y completa los datos para WhatsApp</p>
+          </div>
+          <button onclick="cerrarModalPedido()" class="rounded-full p-2 text-gray-400 hover:bg-dark-elevated hover:text-white transition">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12"/>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Cuerpo desplazable del Modal -->
+        <div class="p-5 overflow-y-auto space-y-5">
+          
+          <!-- Lista de productos seleccionados -->
+          <div>
+            <div class="flex items-center justify-between mb-2">
+              <span class="text-xs font-semibold uppercase tracking-wider text-gray-400">Artículos</span>
+              <button onclick="vaciarCarrito()" id="btnClearCart" class="text-xs text-rose-400 hover:text-rose-300 hidden">Vaciar todo</button>
+            </div>
+            <div id="modalCartItems" class="space-y-2.5">
+              <!-- Se llena dinámicamente con JS -->
+            </div>
+          </div>
+
+          <!-- Formulario de detalles del pedido -->
+          <div id="orderFormSection" class="space-y-4 pt-2 border-t border-dark-border">
+            
+            <!-- Modalidad -->
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Modalidad de entrega</label>
+              <div class="grid grid-cols-2 gap-2.5">
+                <label class="cursor-pointer">
+                  <input type="radio" name="modalidad" value="Delivery" checked onchange="toggleDireccion(true)" class="peer sr-only">
+                  <div class="rounded-xl border border-dark-border bg-dark-bg p-3 text-center text-sm font-semibold text-gray-300 peer-checked:border-brand-orange peer-checked:bg-brand-orange/15 peer-checked:text-white transition">
+                    🛵 Delivery
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="modalidad" value="Retiro en el puesto" onchange="toggleDireccion(false)" class="peer sr-only">
+                  <div class="rounded-xl border border-dark-border bg-dark-bg p-3 text-center text-sm font-semibold text-gray-300 peer-checked:border-brand-orange peer-checked:bg-brand-orange/15 peer-checked:text-white transition">
+                    🏪 Retiro en puesto
+                  </div>
+                </label>
+              </div>
+            </div>
+
+            <!-- Dirección o referencia -->
+            <div id="direccionWrapper">
+              <label for="inputDireccion" class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-1.5">
+                Dirección o punto de referencia
+              </label>
+              <input type="text" id="inputDireccion"
+                     placeholder="Ej: Urb. Los Próceres, calle 4, casa #12..."
+                     class="w-full rounded-xl border border-dark-border bg-dark-bg px-3.5 py-2.5 text-sm text-white placeholder-gray-500 focus:border-brand-orange focus:outline-none">
+            </div>
+
+            <!-- Selección de salsas -->
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Salsas a incluir</label>
+              <div class="flex flex-wrap gap-2" id="salsasGroup">
+                <label class="cursor-pointer">
+                  <input type="checkbox" value="Todas" onchange="manejarSalsaTodas(this)" class="salsa-cb peer sr-only" checked>
+                  <span class="inline-block rounded-lg border border-dark-border bg-dark-bg px-3 py-1.5 text-xs font-medium text-gray-300 peer-checked:border-brand-amber peer-checked:bg-brand-amber/15 peer-checked:text-brand-amber transition">
+                    ✨ Todas
+                  </span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="checkbox" value="Ajo" onchange="manejarSalsaIndividual()" class="salsa-cb peer sr-only">
+                  <span class="inline-block rounded-lg border border-dark-border bg-dark-bg px-3 py-1.5 text-xs font-medium text-gray-300 peer-checked:border-brand-amber peer-checked:bg-brand-amber/15 peer-checked:text-brand-amber transition">
+                    Ajo
+                  </span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="checkbox" value="Tártara" onchange="manejarSalsaIndividual()" class="salsa-cb peer sr-only">
+                  <span class="inline-block rounded-lg border border-dark-border bg-dark-bg px-3 py-1.5 text-xs font-medium text-gray-300 peer-checked:border-brand-amber peer-checked:bg-brand-amber/15 peer-checked:text-brand-amber transition">
+                    Tártara
+                  </span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="checkbox" value="Picante" onchange="manejarSalsaIndividual()" class="salsa-cb peer sr-only">
+                  <span class="inline-block rounded-lg border border-dark-border bg-dark-bg px-3 py-1.5 text-xs font-medium text-gray-300 peer-checked:border-brand-amber peer-checked:bg-brand-amber/15 peer-checked:text-brand-amber transition">
+                    🌶️ Picante
+                  </span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="checkbox" value="Ketchup" onchange="manejarSalsaIndividual()" class="salsa-cb peer sr-only">
+                  <span class="inline-block rounded-lg border border-dark-border bg-dark-bg px-3 py-1.5 text-xs font-medium text-gray-300 peer-checked:border-brand-amber peer-checked:bg-brand-amber/15 peer-checked:text-brand-amber transition">
+                    Ketchup
+                  </span>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="checkbox" value="Mostaza" onchange="manejarSalsaIndividual()" class="salsa-cb peer sr-only">
+                  <span class="inline-block rounded-lg border border-dark-border bg-dark-bg px-3 py-1.5 text-xs font-medium text-gray-300 peer-checked:border-brand-amber peer-checked:bg-brand-amber/15 peer-checked:text-brand-amber transition">
+                    Mostaza
+                  </span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Método de pago -->
+            <div>
+              <label class="block text-xs font-semibold uppercase tracking-wider text-gray-400 mb-2">Método de pago</label>
+              <div class="grid grid-cols-3 gap-2">
+                <label class="cursor-pointer">
+                  <input type="radio" name="pago" value="Pago Móvil" checked class="peer sr-only">
+                  <div class="rounded-xl border border-dark-border bg-dark-bg py-2.5 px-2 text-center text-xs font-semibold text-gray-300 peer-checked:border-brand-orange peer-checked:bg-brand-orange/15 peer-checked:text-white transition">
+                    📱 Pago Móvil
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="pago" value="Efectivo" class="peer sr-only">
+                  <div class="rounded-xl border border-dark-border bg-dark-bg py-2.5 px-2 text-center text-xs font-semibold text-gray-300 peer-checked:border-brand-orange peer-checked:bg-brand-orange/15 peer-checked:text-white transition">
+                    💵 Efectivo
+                  </div>
+                </label>
+                <label class="cursor-pointer">
+                  <input type="radio" name="pago" value="Transferencia" class="peer sr-only">
+                  <div class="rounded-xl border border-dark-border bg-dark-bg py-2.5 px-2 text-center text-xs font-semibold text-gray-300 peer-checked:border-brand-orange peer-checked:bg-brand-orange/15 peer-checked:text-white transition">
+                    🏦 Transf.
+                  </div>
+                </label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Pie del Modal con Total y Botón de WhatsApp -->
+        <div class="p-4 sm:p-5 border-t border-dark-border bg-dark-elevated/60 space-y-3">
+          <div class="flex items-center justify-between">
+            <span class="text-sm text-gray-300 font-medium">Total estimado</span>
+            <span id="modalTotalAmount" class="font-display text-2xl font-extrabold text-brand-amber">$0.00</span>
+          </div>
+
+          <div id="validationToast" class="hidden rounded-xl bg-rose-500/15 border border-rose-500/30 px-3 py-2 text-xs text-rose-300 text-center">
+            Agrega al menos un producto al pedido antes de enviarlo.
+          </div>
+
+          <button onclick="enviarPedidoWhatsApp()"
+                  class="w-full flex items-center justify-center gap-2.5 rounded-2xl bg-emerald-500 hover:bg-emerald-400 py-3.5 px-5 font-display font-bold text-sm sm:text-base text-gray-950 shadow-lg shadow-emerald-500/20 transition active:scale-[0.98]">
+            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M12.031 6.172c-3.181 0-5.767 2.586-5.768 5.766-.001 1.298.38 2.27 1.019 3.287l-.582 2.128 2.182-.573c.978.58 1.911.928 3.145.929 3.178 0 5.767-2.587 5.768-5.766.001-3.187-2.575-5.77-5.764-5.771zm3.392 8.244c-.144.405-.837.774-1.17.824-.299.045-.677.063-1.092-.069-.252-.08-.575-.187-.988-.365-1.739-.751-2.874-2.502-2.961-2.617-.087-.116-.708-.94-.708-1.793s.448-1.273.607-1.446c.159-.173.346-.217.462-.217l.332.006c.106.005.249-.04.39.298.144.347.491 1.2.534 1.287.043.087.072.188.014.304-.058.116-.087.188-.173.289l-.26.304c-.087.086-.177.18-.076.354.101.174.449.741.964 1.201.662.591 1.221.774 1.394.86s.274.072.376-.043c.101-.116.433-.506.549-.68.116-.173.231-.145.39-.087s1.011.477 1.184.564.289.13.332.202c.045.072.045.419-.1.824z"/>
+            </svg>
+            <span>Enviar pedido por WhatsApp</span>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- ==================== 7. LÓGICA JAVASCRIPT ==================== -->
+  <script>
+    // Número de WhatsApp configurado en formato internacional sin '+' ni guiones
+    const WHATSAPP_NUMBER = "584161170303";
+
+    // Ilustraciones SVG estilizadas por tipo de producto
+    const ICONS = {
+      burger: `<svg class="w-7 h-7 text-brand-amber" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M4 11h16M4 15h16M5 11c0-3.5 3.1-6 7-6s7 2.5 7 6M6 15v1.5A2.5 2.5 0 008.5 19h7a2.5 2.5 0 002.5-2.5V15"/>
+      </svg>`,
+      pepito: `<svg class="w-7 h-7 text-brand-orange" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <rect x="3" y="7" width="18" height="10" rx="5" />
+        <path stroke-linecap="round" d="M6 12c1.5-1 3 1 4.5 0s3 1 4.5 0 3 1 3 0" />
+      </svg>`,
+      fries: `<svg class="w-7 h-7 text-amber-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M6 10l1.5 10h9L18 10H6zM8 10V5m4 5V4m4 6V6" />
+      </svg>`,
+      drink: `<svg class="w-7 h-7 text-sky-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M7 8h10l-1 12H8L7 8zm5 0V4l3-1" />
+      </svg>`,
+      combo: `<svg class="w-7 h-7 text-emerald-400" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+        <path stroke-linecap="round" stroke-linejoin="round" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+      </svg>`
+    };
+
+    // Catálogo completo de productos
+    const MENU_ITEMS = [
+      // Favoritos / Destacados
+      {
+        id: 'fav-combo-1',
+        category: 'favoritos',
+        name: 'Combo Urbano #1',
+        desc: '1 Hamburguesa Clásica + papas fritas medianas + bebida fría.',
+        price: 6.50,
+        badge: '🔥 Más pedido',
+        icon: ICONS.combo
+      },
+      {
+        id: 'fav-pepito-casa',
+        category: 'favoritos',
+        name: 'Pepito de la Casa',
+        desc: 'Res y pollo salteados, tocineta, maíz dulce, queso fundido y papas hilo.',
+        price: 7.50,
+        badge: '⭐ Top sabor',
+        icon: ICONS.pepito
+      },
+      {
+        id: 'burger-doble',
+        category: 'favoritos',
+        alsoIn: 'hamburguesas',
+        name: 'Doble Queso & Tocineta',
+        desc: 'Doble carne a la plancha, doble queso cheddar, tocineta crujiente y salsa especial.',
+        price: 6.00,
+        badge: '⚡ Listo en 15 min',
+        icon: ICONS.burger
+      },
+
+      // Hamburguesas
+      {
+        id: 'burger-clasica',
+        category: 'hamburguesas',
+        name: 'La Clásica',
+        desc: 'Carne de res, queso cheddar, lechuga, tomate, cebolla y salsas de la casa.',
+        price: 4.50,
+        icon: ICONS.burger
+      },
+      {
+        id: 'burger-pollo',
+        category: 'hamburguesas',
+        name: 'Pollo Crispy',
+        desc: 'Pechuga empanizada crujiente, queso, ensalada fresca y mayonesa de ajo.',
+        price: 5.00,
+        icon: ICONS.burger
+      },
+
+      // Pepitos y Perros Calientes
+      {
+        id: 'pepito-mixto',
+        category: 'pepitos',
+        name: 'Pepito Mixto',
+        desc: 'Carne de res, pollo, tocineta, queso fundido, maíz y papas hilo en pan suave.',
+        price: 7.50,
+        icon: ICONS.pepito
+      },
+      {
+        id: 'pepito-pollo',
+        category: 'pepitos',
+        name: 'Pepito de Pollo',
+        desc: 'Pollo jugoso a la plancha, queso amarillo, tocineta, repollo y salsas.',
+        price: 6.50,
+        icon: ICONS.pepito
+      },
+      {
+        id: 'perro-especial',
+        category: 'pepitos',
+        name: 'Perro Especial',
+        desc: 'Salchicha especial, queso rallado, ripio de papa, repollo y salsas.',
+        price: 2.50,
+        badge: '⚡ Rápido',
+        icon: ICONS.pepito
+      },
+      {
+        id: 'perro-doble',
+        category: 'pepitos',
+        name: 'Perro Doble',
+        desc: 'Doble salchicha, queso fundido, tocineta picada, ripio y salsas.',
+        price: 3.80,
+        icon: ICONS.pepito
+      },
+
+      // Acompañantes, Extras y Bebidas
+      {
+        id: 'acomp-papas',
+        category: 'acompanantes',
+        name: 'Papas Fritas',
+        desc: 'Porción crujiente recién hecha con sal y toque de especias.',
+        price: 2.00,
+        icon: ICONS.fries
+      },
+      {
+        id: 'acomp-salchipapa',
+        category: 'acompanantes',
+        name: 'Salchipapa Clásica',
+        desc: 'Papas fritas, salchicha troceada, queso rallado y salsas a elegir.',
+        price: 3.50,
+        icon: ICONS.fries
+      },
+      {
+        id: 'acomp-extra',
+        category: 'acompanantes',
+        name: 'Extra Tocineta / Queso',
+        desc: 'Adicional generoso por unidad para sumar a cualquiera de tus platos.',
+        price: 1.00,
+        icon: ICONS.fries
+      },
+      {
+        id: 'acomp-bebida',
+        category: 'acompanantes',
+        name: 'Refresco / Malta / Té',
+        desc: 'Lata o botella bien fría (indica sabor en el chat si deseas).',
+        price: 1.50,
+        icon: ICONS.drink
+      },
+
+      // Combos
+      {
+        id: 'combo-pareja',
+        category: 'combos',
+        name: 'Combo Pareja',
+        desc: '2 hamburguesas clásicas + 1 ración grande de papas + 2 bebidas frías.',
+        price: 12.50,
+        badge: '🔥 Ideal para 2',
+        icon: ICONS.combo
+      },
+      {
+        id: 'combo-pepitero',
+        category: 'combos',
+        name: 'Combo Pepitero',
+        desc: '1 pepito mixto full equipo + 1 bebida fría a elección.',
+        price: 9.00,
+        icon: ICONS.combo
+      }
+    ];
+
+    // Estado del carrito: { [itemId]: cantidad }
+    let cart = {};
+
+    // Formateador de moneda USD
+    function formatUSD(amount) {
+      return '$' + amount.toFixed(2);
+    }
+
+    // Renderizar todas las tarjetas del catálogo
+    function renderMenu() {
+      const categories = ['favoritos', 'hamburguesas', 'pepitos', 'acompanantes', 'combos'];
+
+      categories.forEach(cat => {
+        const container = document.getElementById(`grid-${cat}`);
+        if (!container) return;
+
+        const items = MENU_ITEMS.filter(item => item.category === cat || item.alsoIn === cat);
+        container.innerHTML = items.map(item => createCardHTML(item)).join('');
+      });
+    }
+
+    // Generar HTML de una tarjeta de producto
+    function createCardHTML(item) {
+      const qty = cart[item.id] || 0;
+
+      return `
+        <article class="group relative flex flex-col justify-between rounded-2xl bg-dark-card border border-dark-border p-4 hover:border-brand-orange/50 transition-all duration-200">
+          <div>
+            <div class="flex items-start justify-between gap-3">
+              <!-- Icono estilizado -->
+              <div class="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-dark-elevated border border-dark-border group-hover:border-brand-orange/30 transition">
+                ${item.icon}
+              </div>
+
+              <!-- Badge opcional -->
+              ${item.badge ? `
+                <span class="inline-flex items-center rounded-full bg-brand-orange/15 border border-brand-orange/30 px-2.5 py-0.5 text-[11px] font-semibold text-brand-amber">
+                  ${item.badge}
+                </span>
+              ` : ''}
+            </div>
+
+            <h3 class="mt-3 font-display text-base sm:text-lg font-bold text-white leading-snug">
+              ${item.name}
+            </h3>
+            <p class="mt-1 text-xs sm:text-sm text-gray-400 leading-relaxed">
+              ${item.desc}
+            </p>
+          </div>
+
+          <div class="mt-4 pt-3 border-t border-dark-border/60 flex items-center justify-between gap-2">
+            <span class="font-display text-lg font-extrabold text-white">
+              ${formatUSD(item.price)}
+            </span>
+
+            <!-- Controles interactivos de cantidad -->
+            <div data-control-id="${item.id}">
+              ${renderControlButtons(item.id, qty)}
+            </div>
+          </div>
+        </article>
+      `;
+    }
+
+    // Botones "+ Agregar" o "- qty +"
+    function renderControlButtons(id, qty) {
+      if (qty === 0) {
+        return `
+          <button onclick="updateQty('${id}', 1)"
+                  class="inline-flex items-center gap-1.5 rounded-xl bg-dark-elevated hover:bg-brand-orange text-white border border-dark-border hover:border-brand-orange px-3.5 py-2 text-xs font-bold transition active:scale-95">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"/>
+            </svg>
+            <span>Agregar</span>
+          </button>
+        `;
+      }
+
+      return `
+        <div class="inline-flex items-center rounded-xl bg-brand-orange text-white p-0.5 shadow-md shadow-brand-orange/20">
+          <button onclick="updateQty('${id}', -1)"
+                  aria-label="Restar"
+                  class="flex h-7 w-7 items-center justify-center rounded-lg hover:bg-black/20 font-bold transition active:scale-90">
+            −
+          </button>
+          <span class="min-w-[26px] text-center text-xs font-extrabold">${qty}</span>
+          <button onclick="updateQty('${id}', 1)"
+                  aria-label="Sumar"
+                  class="flex h-7 w-7 items-center justify-center rounded-lg hover:bg-black/20 font-bold transition active:scale-90">
+            +
+          </button>
+        </div>
+      `;
+    }
+
+    // Actualizar cantidad de un producto
+    function updateQty(id, delta) {
+      const current = cart[id] || 0;
+      const next = Math.max(0, current + delta);
+
+      if (next === 0) {
+        delete cart[id];
+      } else {
+        cart[id] = next;
+      }
+
+      // Actualizar todos los controles de ese ID en el DOM (por si aparece en Favoritos y en su categoría)
+      document.querySelectorAll(`[data-control-id="${id}"]`).forEach(el => {
+        el.innerHTML = renderControlButtons(id, next);
+      });
+
+      updateCartUI();
+    }
+
+    // Vaciar carrito completo
+    function vaciarCarrito() {
+      cart = {};
+      renderMenu();
+      updateCartUI();
+    }
+
+    // Calcular totales y actualizar barra inferior + modal
+    function updateCartUI() {
+      let totalItems = 0;
+      let totalAmount = 0;
+      const selectedList = [];
+
+      Object.entries(cart).forEach(([id, qty]) => {
+        const product = MENU_ITEMS.find(p => p.id === id);
+        if (product && qty > 0) {
+          totalItems += qty;
+          totalAmount += product.price * qty;
+          selectedList.push({ ...product, qty, subtotal: product.price * qty });
+        }
+      });
+
+      // Actualizar barra inferior fija
+      document.getElementById('cartCountBadge').textContent = totalItems;
+      document.getElementById('cartTotalBottom').textContent = formatUSD(totalAmount);
+      document.getElementById('modalTotalAmount').textContent = formatUSD(totalAmount);
+
+      const summaryText = document.getElementById('cartSummaryText');
+      if (totalItems === 0) {
+        summaryText.textContent = 'Agrega platos del menú';
+      } else if (totalItems === 1) {
+        summaryText.textContent = '1 artículo seleccionado · Ver pedido';
+      } else {
+        summaryText.textContent = `${totalItems} artículos · Ver pedido`;
+      }
+
+      // Renderizar lista dentro del modal
+      const modalItemsContainer = document.getElementById('modalCartItems');
+      const btnClear = document.getElementById('btnClearCart');
+
+      if (selectedList.length === 0) {
+        btnClear.classList.add('hidden');
+        modalItemsContainer.innerHTML = `
+          <div class="rounded-2xl border border-dashed border-dark-border bg-dark-bg/60 p-6 text-center">
+            <p class="text-sm text-gray-400">Tu carrito está vacío.</p>
+            <button onclick="cerrarModalPedido()" class="mt-2 text-xs font-semibold text-brand-amber hover:underline">
+              Volver al menú para elegir platos
+            </button>
+          </div>
+        `;
+      } else {
+        btnClear.classList.remove('hidden');
+        document.getElementById('validationToast').classList.add('hidden');
+
+        modalItemsContainer.innerHTML = selectedList.map(item => `
+          <div class="flex items-center justify-between gap-3 rounded-xl bg-dark-bg border border-dark-border p-3">
+            <div class="min-w-0 flex-1">
+              <div class="text-sm font-bold text-white truncate">${item.name}</div>
+              <div class="text-xs text-gray-400">${formatUSD(item.price)} c/u · Subtotal: <span class="text-gray-200 font-semibold">${formatUSD(item.subtotal)}</span></div>
+            </div>
+            <div class="inline-flex items-center rounded-lg bg-dark-elevated border border-dark-border p-0.5">
+              <button onclick="updateQty('${item.id}', -1)" class="h-7 w-7 flex items-center justify-center text-gray-300 hover:text-white font-bold">−</button>
+              <span class="min-w-[24px] text-center text-xs font-bold text-white">${item.qty}</span>
+              <button onclick="updateQty('${item.id}', 1)" class="h-7 w-7 flex items-center justify-center text-gray-300 hover:text-white font-bold">+</button>
+            </div>
+          </div>
+        `).join('');
+      }
+    }
+
+    // Abrir y cerrar modal
+    function abrirModalPedido() {
+      updateCartUI();
+      document.getElementById('orderModal').classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function cerrarModalPedido() {
+      document.getElementById('orderModal').classList.add('hidden');
+      document.body.style.overflow = '';
+    }
+
+    // Mostrar/ocultar campo de dirección según modalidad
+    function toggleDireccion(esDelivery) {
+      const wrapper = document.getElementById('direccionWrapper');
+      if (esDelivery) {
+        wrapper.classList.remove('hidden');
+      } else {
+        wrapper.classList.add('hidden');
+      }
+    }
+
+    // Lógica de checkboxes de salsas
+    function manejarSalsaTodas(cbTodas) {
+      const checkboxes = document.querySelectorAll('.salsa-cb');
+      if (cbTodas.checked) {
+        checkboxes.forEach(cb => {
+          if (cb.value !== 'Todas') cb.checked = false;
+        });
+      }
+    }
+
+    function manejarSalsaIndividual() {
+      const cbTodas = document.querySelector('.salsa-cb[value="Todas"]');
+      const individuales = Array.from(document.querySelectorAll('.salsa-cb')).filter(cb => cb.value !== 'Todas');
+      const algunaMarcada = individuales.some(cb => cb.checked);
+
+      if (algunaMarcada && cbTodas) {
+        cbTodas.checked = false;
+      } else if (!algunaMarcada && cbTodas) {
+        cbTodas.checked = true;
+      }
+    }
+
+    // Generar mensaje formateado y abrir WhatsApp
+    function enviarPedidoWhatsApp() {
+      const entries = Object.entries(cart).filter(([, qty]) => qty > 0);
+      if (entries.length === 0) {
+        document.getElementById('validationToast').classList.remove('hidden');
+        return;
+      }
+
+      let total = 0;
+      const lines = entries.map(([id, qty]) => {
+        const item = MENU_ITEMS.find(p => p.id === id);
+        const sub = item.price * qty;
+        total += sub;
+        return `- ${qty}x ${item.name} (${formatUSD(sub)})`;
+      });
+
+      const modalidad = document.querySelector('input[name="modalidad"]:checked')?.value || 'Delivery';
+      const direccionInput = document.getElementById('inputDireccion').value.trim();
+      const direccionTexto = modalidad === 'Delivery'
+        ? (direccionInput || 'Por confirmar en el chat')
+        : 'Retiro directo en el puesto';
+
+      const salsasSeleccionadas = Array.from(document.querySelectorAll('.salsa-cb:checked')).map(cb => cb.value);
+      const salsasTexto = salsasSeleccionadas.length > 0 ? salsasSeleccionadas.join(', ') : 'Sin salsas';
+
+      const metodoPago = document.querySelector('input[name="pago"]:checked')?.value || 'Pago Móvil';
+
+      const mensaje = [
+        `¡Hola! Quiero hacer este pedido en *Bocado Urbano*:`,
+        ``,
+        ...lines,
+        ``,
+        `*Total estimado:* ${formatUSD(total)}`,
+        `*Modalidad:* ${modalidad}`,
+        `*Dirección / Referencia:* ${direccionTexto}`,
+        `*Salsas:* ${salsasTexto}`,
+        `*Método de pago:* ${metodoPago}`
+      ].join('\n');
+
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(mensaje)}`;
+      window.open(url, '_blank', 'noopener,noreferrer');
+    }
+
+    // Copiar código HTML completo al portapapeles
+    function copiarCodigoFuente() {
+      const fullHTML = '<!DOCTYPE html>\n' + document.documentElement.outerHTML;
+      const tempTextArea = document.createElement('textarea');
+      tempTextArea.value = fullHTML;
+      document.body.appendChild(tempTextArea);
+      tempTextArea.select();
+      try {
+        document.execCommand('copy');
+        const label = document.getElementById('copyBtnText');
+        label.textContent = '¡Código copiado al portapapeles!';
+        setTimeout(() => {
+          label.textContent = 'Copiar código HTML completo';
+        }, 2500);
+      } catch (err) {
+        console.error('Error al copiar código:', err);
+      }
+      document.body.removeChild(tempTextArea);
+    }
+
+    // Resaltar pestaña activa al hacer scroll
+    function setupScrollSpy() {
+      const sections = ['favoritos', 'hamburguesas', 'pepitos', 'acompanantes', 'combos'];
+      const pills = document.querySelectorAll('.cat-pill');
+
+      window.addEventListener('scroll', () => {
+        let current = sections[0];
+        const offset = 130;
+
+        sections.forEach(secId => {
+          const el = document.getElementById(secId);
+          if (el && window.scrollY >= el.offsetTop - offset) {
+            current = secId;
+          }
+        });
+
+        pills.forEach(pill => {
+          const isMatch = pill.dataset.cat === current;
+          if (isMatch) {
+            pill.classList.add('bg-brand-orange', 'text-white', 'shadow-lg', 'shadow-brand-orange/20');
+            pill.classList.remove('bg-dark-card', 'text-gray-300', 'border', 'border-dark-border');
+          } else {
+            pill.classList.remove('bg-brand-orange', 'text-white', 'shadow-lg', 'shadow-brand-orange/20');
+            pill.classList.add('bg-dark-card', 'text-gray-300', 'border', 'border-dark-border');
+          }
+        });
+      }, { passive: true });
+    }
+
+    // Inicialización al cargar la página
+    document.addEventListener('DOMContentLoaded', () => {
+      renderMenu();
+      updateCartUI();
+      setupScrollSpy();
+    });
+  </script>
+</body>
+</html>
